@@ -5,22 +5,9 @@ from demoqa_tests.model.data.user import User
 
 
 def test_successful_submit_student_registration_form():
-    (
-        practice_form.given_opened()
-        .fill_name(Vlad)
-        .fill_last_name(Vlad)
-        .fill_email(Vlad)
-        .fill_mobile_number(Vlad)
-        .select_date_of_birth(Vlad)
-        .select_subjects(Vlad)
-        .select_hobbies(Vlad)
-        .select_picture(Vlad)
-        .fill_current_address(Vlad)
-        .select_state(Vlad)
-        .select_gender(Vlad)
-        .select_city(Vlad)
-        .submit_form()
-    )
+    practice_form.given_opened()
+
+    practice_form.fill_student(Vlad).submit_form()
 
     practice_form.assert_submitted(
         'Vladislav Kamenskiy',
@@ -37,16 +24,16 @@ def test_successful_submit_student_registration_form():
 
 
 Vlad = User(
-    "Vladislav",
-    "Kamenskiy",
-    "dje.fry@mail.ru",
-    "Male",
-    "9162754427",
-    datetime.date(1994, 9, 19),
-    "English",
-    ("Sports", "Music"),
-    "test_pictures.webp",
-    "Novotushinskiy proezd 8",
-    "Haryana",
-    "Panipat",
+    name="Vladislav",
+    last_name="Kamenskiy",
+    email="dje.fry@mail.ru",
+    gender="Male",
+    mobile_number="9162754427",
+    date_of_birth=datetime.date(1994, 9, 19),
+    subjects="English",
+    hobbies=("Sports", "Music"),
+    picture="test_pictures.webp",
+    current_address="Novotushinskiy proezd 8",
+    state="Haryana",
+    city="Panipat",
 )

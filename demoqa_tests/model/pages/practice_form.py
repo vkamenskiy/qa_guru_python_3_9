@@ -40,51 +40,18 @@ class PracticeForm:
             ads.perform(command.js.remove)
         return self
 
-    def fill_name(self, user: User):
+    def fill_student(self, user: User):
         self.name.type(user.name)
-        return self
-
-    def fill_last_name(self, user: User):
         self.last_name.type(user.last_name)
-        return self
-
-    def fill_email(self, user: User):
         self.email.type(user.email)
-        return self
-
-    def select_gender(self, user: User):
         self.gender.select(by_text=user.gender)
-        return self
-
-    def fill_mobile_number(self, user: User):
         self.mobile_number.type(user.mobile_number)
-        return self
-
-    def select_date_of_birth(self, user: User):
         self.birthday.fill_date(user.date_of_birth)
-        return self
-
-    def select_subjects(self, user: User):
         self.subjects.select(by_text=user.subjects)
-        return self
-
-    def select_hobbies(self, user: User):
         self.hobby.select(by_texts=user.hobbies)
-        return self
-
-    def select_picture(self, user: User):
         self.upload_picture.send_keys(resource.abs_path(user.picture))
-        return self
-
-    def fill_current_address(self, user: User):
         self.current_address.type(user.current_address)
-        return self
-
-    def select_state(self, user: User):
         self.state.select(by_text=user.state)
-        return self
-
-    def select_city(self, user: User):
         self.city.select(by_text=user.city)
         return self
 
