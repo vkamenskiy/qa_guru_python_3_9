@@ -1,5 +1,3 @@
-import datetime
-
 from selene import have, command
 from selene.support.shared import browser
 
@@ -8,6 +6,7 @@ from demoqa_tests.model.controls.datepicker import DatePicker
 from demoqa_tests.model.controls.dropdown import Dropdown
 from demoqa_tests.model.controls.multiselect import Multiselect
 from demoqa_tests.model.controls.radio import Radio
+from demoqa_tests.model.data.user import User
 from demoqa_tests.utils import resource
 
 
@@ -41,52 +40,52 @@ class PracticeForm:
             ads.perform(command.js.remove)
         return self
 
-    def fill_name(self, value: str):
-        self.name.type(value)
+    def fill_name(self, user: User):
+        self.name.type(user.name)
         return self
 
-    def fill_last_name(self, value: str):
-        self.last_name.type(value)
+    def fill_last_name(self, user: User):
+        self.last_name.type(user.last_name)
         return self
 
-    def fill_email(self, value: str):
-        self.email.type(value)
+    def fill_email(self, user: User):
+        self.email.type(user.email)
         return self
 
-    def select_gender(self, value: str):
-        self.gender.select(by_text=value)
+    def select_gender(self, user: User):
+        self.gender.select(by_text=user.gender)
         return self
 
-    def fill_mobile_number(self, value: str):
-        self.mobile_number.type(value)
+    def fill_mobile_number(self, user: User):
+        self.mobile_number.type(user.mobile_number)
         return self
 
-    def select_date_of_birth(self, value: datetime.date):
-        self.birthday.fill_date(value)
+    def select_date_of_birth(self, user: User):
+        self.birthday.fill_date(user.date_of_birth)
         return self
 
-    def select_subjects(self, value: str):
-        self.subjects.select(by_text=value)
+    def select_subjects(self, user: User):
+        self.subjects.select(by_text=user.subjects)
         return self
 
-    def select_hobbies(self, *texts: str):
-        self.hobby.select(by_texts=texts)
+    def select_hobbies(self, user: User):
+        self.hobby.select(by_texts=user.hobbies)
         return self
 
-    def select_picture(self, file: str):
-        self.upload_picture.send_keys(resource.abs_path(file))
+    def select_picture(self, user: User):
+        self.upload_picture.send_keys(resource.abs_path(user.picture))
         return self
 
-    def fill_current_address(self, value: str):
-        self.current_address.type(value)
+    def fill_current_address(self, user: User):
+        self.current_address.type(user.current_address)
         return self
 
-    def select_state(self, value: str):
-        self.state.select(by_text=value)
+    def select_state(self, user: User):
+        self.state.select(by_text=user.state)
         return self
 
-    def select_city(self, value: str):
-        self.city.select(by_text=value)
+    def select_city(self, user: User):
+        self.city.select(by_text=user.city)
         return self
 
     def submit_form(self):
