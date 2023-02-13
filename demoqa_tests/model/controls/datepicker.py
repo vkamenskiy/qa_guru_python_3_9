@@ -1,24 +1,6 @@
 import datetime
-import sys
 
 from selene.support.shared import browser
-from selenium.webdriver.common.keys import Keys
-
-
-# class DatePicker:
-#
-#     def __init__(self, element):
-#         self.element = element
-#
-#     def fill_date(self, date: datetime.date):
-#         day = date.strftime('%d')
-#         month = int(date.strftime('%-m')) - 1
-#         year = date.strftime('%Y')
-#         self.element.click()
-#         browser.element(f'.react-datepicker__year-select [value="{year}"]').click()
-#         browser.element(f'.react-datepicker__month-select [value="{str(month)}"]').click()
-#         browser.element(f'.react-datepicker__day--0{day}').click()
-#         return self
 
 
 class DatePicker:

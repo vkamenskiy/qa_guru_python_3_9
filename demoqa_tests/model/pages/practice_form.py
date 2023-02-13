@@ -12,26 +12,27 @@ from demoqa_tests.utils import resource
 
 class PracticeForm:
     def __init__(self):
-        self.name = browser.element('#firstName')
-        self.birthday = DatePicker(browser.element('#dateOfBirthInput'))
-        self.last_name = browser.element('#lastName')
-        self.email = browser.element('#userEmail')
-        self.gender = Radio(browser.all('[name=gender]'))
-        self.mobile_number = browser.element('#userNumber')
-        self.subjects = Multiselect(browser.element('#subjectsInput'))
-        self.hobby = Checkbox(browser.all('[for^=hobbies-checkbox]'))
-        self.upload_picture = browser.element('#uploadPicture')
-        self.current_address = browser.element('#currentAddress')
-        self.state = Dropdown(browser.element('#state'))
-        self.city = Dropdown(browser.element('#city'))
-        self.submit = browser.element('#submit')
+        self.name = browser.element("#firstName")
+        self.birthday = DatePicker(browser.element("#dateOfBirthInput"))
+        self.last_name = browser.element("#lastName")
+        self.email = browser.element("#userEmail")
+        self.gender = Radio(browser.all("[name=gender]"))
+        self.mobile_number = browser.element("#userNumber")
+        self.subjects = Multiselect(browser.element("#subjectsInput"))
+        self.hobby = Checkbox(browser.all("[for^=hobbies-checkbox]"))
+        self.upload_picture = browser.element("#uploadPicture")
+        self.current_address = browser.element("#currentAddress")
+        self.state = Dropdown(browser.element("#state"))
+        self.city = Dropdown(browser.element("#city"))
+        self.submit = browser.element("#submit")
+        self.assert_table = browser.element(".table").all("td:nth-of-type(2)")
 
     def given_opened(self):
-        browser.open('/automation-practice-form')
+        browser.open("/automation-practice-form")
         browser.execute_script(
             'document.querySelector(".body-height").style.transform = "scale(.5)"'
         )
-        ads = browser.all('[id^=google_ads][id$=container__]')
+        ads = browser.all("[id^=google_ads][id$=container__]")
         ads.with_(timeout=10).should(have.size_greater_than_or_equal(3)).perform(
             command.js.remove
         )
@@ -59,8 +60,21 @@ class PracticeForm:
         self.submit.perform(command.js.click)
         return self
 
-    def assert_submitted(self, *data):
-        browser.element('.table').all('td:nth-of-type(2)').should(have.texts(data))
+    def assert_submitted(self, user: User):
+        self.assert_table.should(
+            have.texts(
+                user.name + " " + user.last_name,
+                user.email,
+                user.gender,
+                user.mobile_number,
+                user.date_of_birth.strftime("%d %B,%Y"),
+                user.subjects,
+                ', '.join(user.hobbies),
+                user.picture,
+                user.current_address,
+                user.state + " " + user.city,
+            )
+        )
         return self
 
 
