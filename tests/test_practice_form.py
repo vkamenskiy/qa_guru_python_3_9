@@ -9,18 +9,7 @@ def test_successful_submit_student_registration_form():
 
     practice_form.fill_student(Vlad).submit_form()
 
-    practice_form.assert_submitted(
-        'Vladislav Kamenskiy',
-        'dje.fry@mail.ru',
-        'Male',
-        '9162754427',
-        datetime.date(1994, 9, 19).strftime('%d %B,%Y'),
-        'English',
-        'Sports, Music',
-        'test_pictures.webp',
-        'Novotushinskiy proezd 8',
-        'Haryana Panipat'
-    )
+    practice_form.assert_submitted(Vlad)
 
 
 Vlad = User(
